@@ -84,15 +84,7 @@ source venv/bin/activate
 
 ---
 
-### 3. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-### 4. Run Database Migrations
+### 3. Run Database Migrations
 
 ```bash
 python manage.py migrate
@@ -100,7 +92,7 @@ python manage.py migrate
 
 ---
 
-### 5. Create a Superuser (Optional)
+### 4. Create a Superuser (Optional)
 
 ```bash
 python manage.py createsuperuser
@@ -108,7 +100,7 @@ python manage.py createsuperuser
 
 ---
 
-### 6. Start the Development Server
+### 5. Start the Development Server
 
 ```bash
 python manage.py runserver
@@ -124,21 +116,17 @@ http://127.0.0.1:8000/
 
 ## Screenshots
 
-Add screenshots of:
-
-* Home Page
-* Book Details Page
-* User Dashboard
-* Admin Dashboard
-* Wishlist / My Books Page
-
-Example:
-
-```markdown
+### Home Page
 ![Home Page](screenshots/home.png)
-```
 
----
+### Login Page
+![Login Page](screenshots/login.png)
+
+### Admin Dashboard
+![Dashboard](screenshots/admin_dashboard.png)
+
+### My Books Page
+![Dashboard](screenshots/my_books.png)
 
 ## Future Improvements
 
