@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Search Results - Online Shelf{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/searchResult-styling.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="search-section">
+    <div class="container">
+        <form class="search-bar" id="search-form" method="GET" action="{% url 'search_results' %}">
+            <input type="text" id="search-input" name="query" placeholder="Search books, authors, genre..." value="{{ query }}" />
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</section>
+
+<section class="search-results">
+    <div class="container">
+        <h2>Search Results for "{{ query }}"</h2>
+        <div id="results-container" class="book-grid">
+            {% if books %}
+                {% for book in books %}
+                <div class="book-card">
+                    <img src="{{ book.cover }}" alt="{{ book.title }}">
+                    <h3>{{ book.title }}</h3>
+                    <p>{{ book.author }}</p>
+                <a href="{% url 'book_info' book.id %}" class="view-btn">View Details</a>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No books found matching your search.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

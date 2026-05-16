@@ -1,0 +1,147 @@
+/* Import shared styles */
+@import 'shared.css';
+
+/* Search Results Section */
+.search-results {
+    padding: 40px 0;
+    background: #fff;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-results h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.search-query {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.search-query h3 {
+    font-size: 22px;
+    color: #555;
+}
+
+/* Cards */
+.card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.book-grid {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 15px 0;
+}
+
+.book-card {
+    background: white;
+    padding: 15px;
+    min-width: 150px;
+    max-width: 200px; /* Fixed size for book cards */
+    flex: 0 0 auto; /* Prevent flex items from shrinking */
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.book-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.book-card h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.book-card p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+.card-actions {
+    display: flex;
+    
+    justify-content: flex-start;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.card-actions a {
+    padding: 10px 15px;
+    font-size: 14px;
+    text-align: center;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.view-btn {
+    background-color: #4a89dc;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.view-btn:hover {
+    background-color: #3a70c2;
+    transform: translateY(-2px);
+}
+
+.view-all-btn {
+    background-color: #4a89dc;
+    border-radius: 6px;
+    color: white;
+}
+
+.view-all-btn:hover {
+    background-color: #3a70c2;
+    transform: translateY(-2px);
+}

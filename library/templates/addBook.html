@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/addBook-styling.css' %}" />
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/addBook-script.js' %}"></script>
+{% endblock %}
+
+{% block title %}Add Book - Admin{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section class="admin-container">
+        <h1>Add a new book</h1>
+        <form class="add-form" id="add-book-form" method="POST" action="{% url 'add_book' %}">
+            {% csrf_token %}
+            <!-- Book cover -->
+            <label>Current Book Cover:</label>
+            <img src="https://via.placeholder.com/150x210?text=Book+Cover" alt="Book Cover"
+                class="book-cover-preview" id="cover-preview" />
+
+            <label for="cover-url">Book Cover URL:</label>
+            <input type="url" id="cover-url" name="cover-url" placeholder="Enter image URL or use a placeholder" />
+
+            <!-- Book fields -->
+            <label for="title">Book Title:</label>
+            <input type="text" id="title" name="title" required placeholder="Enter the name of the book" />
+
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" required placeholder="Enter the name of the author" />
+
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+                {% for category, display in categories %}
+                <option value="{{ category }}">{{ display }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4"
+                placeholder="Description of the book..."></textarea>
+
+            <label for="pages">Number of Pages:</label>
+            <input type="number" id="pages" name="pages" placeholder="# of pages" />
+
+            <label for="status">Availability:</label>
+            <select id="status" name="status">
+                <option value="available" selected>Available</option>
+                <option value="borrowed">Borrowed</option>
+            </select>
+
+            <div class="form-actions">
+                <button type="submit" class="save-btn">Add Book</button>
+                <button type="button" class="delete-btn" id="cancel-btn" data-cancel-url="{% url 'admin_dashboard' %}">Cancel</button>            </div>
+        </form>
+    </section>
+</div>
+{% endblock %}

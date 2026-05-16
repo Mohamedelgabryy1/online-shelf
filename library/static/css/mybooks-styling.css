@@ -1,0 +1,103 @@
+/* Import shared styles */
+@import 'shared.css';
+
+/* My Books Section */
+.my-books-section {
+    padding: 40px 0;
+}
+
+.my-books-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+}
+
+/* Book Grid */
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 250px)); /* Fixed size for book cards */
+    gap: 20px;
+    justify-content: center; /* Center the grid items */
+}
+
+.book-card {
+    background: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.book-card img {
+    width: 100%;
+    height: 250px; /* Adjusted height for better layout */
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.book-card h3 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.book-card p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Actions Section */
+.my-books-actions {
+    display: flex;
+    justify-content: space-between; /* Space between buttons */
+    gap: 10px; /* Add spacing between buttons */
+    margin-top: 15px; /* Add some space above the buttons */
+}
+
+.my-books-actions a,
+.my-books-actions button {
+    padding: 10px 15px;
+    font-size: 14px;
+    text-align: center;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    flex: 1; /* Make buttons take equal width */
+    display: flex; /* Ensure proper alignment */
+    justify-content: center; /* Center text horizontally */
+    align-items: center; /* Center text vertically */
+    max-width: 100%; /* Prevent overflow */
+    box-sizing: border-box; /* Include padding and border in size calculations */
+}
+
+/* View Button */
+.view-btn {
+    background-color: #4a89dc; /* Blue */
+    color: white;
+    text-decoration: none;
+}
+
+.view-btn:hover {
+    background-color: #3a70c2; /* Darker Blue */
+    transform: translateY(-2px);
+}
+
+/* Return Button */
+.return-btn {
+    background-color: #e9573f; /* Red */
+    color: white;
+}
+
+.return-btn:hover {
+    background-color: #d84228; /* Darker Red */
+    transform: translateY(-2px);
+}

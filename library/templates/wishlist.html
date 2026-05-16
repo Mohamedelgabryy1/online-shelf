@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Wishlist - Online Shelf{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/wishlist-styling.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="wishlist-section">
+    <div class="container">
+        <h2>Your Wishlist</h2>
+        <div class="book-grid">
+            {% for item in wishlist_items %}
+            <div class="book-card">
+                <div class="book-cover">
+                    <img src="{{ item.book.cover }}" alt="{{ item.book.title }}">
+                </div>
+                <div class="book-details">
+                    <h3 class="book-title">{{ item.book.title }}</h3>
+                    <p class="book-author">{{ item.book.author }}</p>
+                </div>
+                <div class="wishlist-actions">
+                    <button class="borrow-btn {% if item.book.available %}available{% else %}unavailable{% endif %}" 
+                            data-book-id="{{ item.book.id }}" 
+                            data-available="{{ item.book.available|yesno:'true,false' }}" 
+                            {% if not item.book.available %}disabled{% endif %}>
+                        {% if item.book.available %}Borrow{% else %}Not Available{% endif %}
+                    </button>
+                    <button class="remove-btn" data-book-id="{{ item.book.id }}">Remove</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/wishlist-script.js' %}"></script>
+{% endblock %}

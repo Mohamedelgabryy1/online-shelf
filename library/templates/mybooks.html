@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Books - Online Shelf{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/myBooks-styling.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="my-books-section">
+    <div class="container">
+        <h2>Your Borrowed Books</h2>
+        <div class="book-grid">
+            {% if borrowed_books %}
+                {% for borrowed_book in borrowed_books %}
+                <div class="book-card">
+                    <div class="book-cover">
+                        <img src="{{ borrowed_book.book.cover }}" alt="{{ borrowed_book.book.title }}">
+                    </div>
+                    <div class="book-details">
+                        <h3 class="book-title">{{ borrowed_book.book.title }}</h3>
+                        <p class="book-author">{{ borrowed_book.book.author }}</p>
+                        <p class="due-date">Due in {{ borrowed_book.due_date|date:"d M Y" }}</p>
+                    </div>
+                    <div class="my-books-actions">
+                        <a href="{% url 'book_info' borrowed_book.book.id %}" class="view-btn">View Book</a>
+                        <form method="POST" action="{% url 'return_book' borrowed_book.book.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="return-btn">Return</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-books-message">You have not borrowed any books yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

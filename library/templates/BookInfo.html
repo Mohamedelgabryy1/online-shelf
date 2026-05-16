@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ book.title }} - Detailed Book Info{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/BookInfo-styling.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="search-section">
+    <div class="container">
+        <form class="search-bar">
+            <input type="text" placeholder="Search for a book..." />
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</section>
+
+<div class="container">
+    <div class="book-container">
+        <img src="{{ book.cover }}" alt="{{ book.title }}">
+        <div class="book-info">
+            <h1>{{ book.title }}</h1>
+            <h2>{{ book.author }}</h2>
+
+            <p><strong>Category:</strong> {{ book.get_category_display }}</p>
+            <p><strong>Description:</strong> {{ book.description }}</p>
+            <p><strong>Book ID:</strong> {{ book.id }}</p>
+            <p><strong>Pages:</strong> {{ book.pages }}</p>
+            <p><strong>Availability Status:</strong> {% if book.available %}Available{% else %}Borrowed{% endif %}</p>
+
+            <div class="button-group">
+                {% if not user.is_staff %}
+                <button id="borrow-btn" type="button">
+                    {% if book.available %}Borrow This Book{% else %}Currently Unavailable{% endif %}
+                </button>
+                <button id="wishlist-btn" type="button">
+                    {% if is_in_wishlist %}
+                        Remove from Wishlist
+                    {% else %}
+                        Add to Wishlist
+                    {% endif %}
+                </button>
+                {% endif %}
+                <!-- Admin-only button -->
+                {% if user.is_staff %}
+                <form id="edit-book-form" action="{% url 'edit_book' book.id %}" method="GET">
+                    <button type="submit">Edit/Delete Book</button>
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block extra_js %}
+<script>
+    const bookId = {{ book.id }};
+</script>
+<script src="{% static 'js/shared.js' %}"></script>
+<script src="{% static 'js/BookInfo-script.js' %}"></script>
+{% endblock %}

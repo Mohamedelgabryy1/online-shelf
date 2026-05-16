@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Profile - Online Shelf{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/editProfile-styling.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section class="profile-edit-container">
+        <h1>Edit Your Profile</h1>
+
+        <div class="profile-sections">
+            <!-- Profile Avatar Section -->
+            <div class="profile-avatar-section">
+                <h2>Profile Picture</h2>
+                <div class="avatar-container">
+                    <div class="current-avatar">
+                        <div class="user-avatar" id="profile-initials">
+                            {% if user.first_name or user.last_name %}
+                                {{ user.first_name|default:""|slice:":1"|upper }}{{ user.last_name|default:""|slice:":1"|upper }}
+                            {% else %}
+                                UN
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="avatar-upload">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Details Section -->
+            <div class="profile-details-section">
+                <h2>Personal Information</h2>
+                <form class="profile-form" id="profile-form" method="POST" action="{% url 'edit_profile' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="fullname">Full Name:</label>
+                        <input type="text" id="fullname" name="fullname" value="{{ user.first_name }} {{ user.last_name }}" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" name="email" value="{{ user.email }}" required />
+                    </div>
+
+                    {% if messages %}
+                        <div class="error-message">
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <button type="submit" class="save-btn">Save Changes</button>
+                </form>
+            </div>
+
+            <!-- Password Change Section -->
+            <div class="password-change-section">
+                <h2>Change Password</h2>
+                <form class="password-form" id="password-form" method="POST" action="{% url 'edit_profile' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="current-password">Current Password:</label>
+                        <input type="password" id="current-password" name="current_password" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new-password">New Password:</label>
+                        <input type="password" id="new-password" name="new_password" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm New Password:</label>
+                        <input type="password" id="confirm-password" name="confirm_password" required />
+                    </div>
+
+                    {% if messages %}
+                        <div class="error-message">
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <button type="submit" class="change-password-btn">Update Password</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/shared.js' %}"></script>
+<script src="{% static 'js/editProfile-script.js' %}"></script>
+{% endblock %}

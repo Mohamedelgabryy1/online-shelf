@@ -1,0 +1,77 @@
+/* Import shared styles */
+@import 'shared.css';
+
+
+/* Book Container */
+.book-container {
+    background: #fff;
+    margin: 40px auto;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    min-height: 500px;
+}
+
+.book-container img {
+    width: 250px;
+    height: 370px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* BookInfo Section */
+.book-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.book-info h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.book-info h2 {
+    font-size: 24px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.book-info p {
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 14px;
+}
+
+.book-info strong {
+    font-weight: 600;
+}
+
+/* Buttons */
+.button-group {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.button-group button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background: #3a70c2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button-group button:hover {
+    background-color: #305c9e;
+    transform: translateY(-2px);
+}

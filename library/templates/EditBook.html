@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Book - Admin{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/EditBook-styling.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <section class="admin-container">
+        <h1>Edit Book Information</h1>
+
+        <form class="edit-form" id="edit-book-form" method="POST" action="{% url 'edit_book' book.id %}">
+            {% csrf_token %}
+            <!-- Book cover -->
+            <label>Current Book Cover:</label>
+            <img src="{{ book.cover }}" alt="Book Cover" class="book-cover-preview" id="cover-preview" />
+
+            <label for="cover-url">Book Cover URL:</label>
+            <input type="url" id="cover-url" name="cover-url" value="{{ book.cover }}" placeholder="Enter image URL" />
+
+            <!-- Book fields -->
+            <label for="title">Book Title:</label>
+            <input type="text" id="title" name="title" value="{{ book.title }}" required />
+
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" value="{{ book.author }}" required />
+
+            <label for="category">Category:</label>
+            <select id="category" name="category">
+                {% for category, display in book.CATEGORY_CHOICES %}
+                <option value="{{ category }}" {% if book.category == category %}selected{% endif %}>{{ display }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4">{{ book.description }}</textarea>
+
+            <label for="pages">Number of Pages:</label>
+            <input type="number" id="pages" name="pages" value="{{ book.pages }}" />
+
+            <label for="status">Availability:</label>
+            <select id="status" name="status">
+                <option value="available" {% if book.available %}selected{% endif %}>Available</option>
+                <option value="borrowed" {% if not book.available %}selected{% endif %}>Borrowed</option>
+            </select>
+
+            <div class="form-actions">
+                <button type="submit" class="save-btn {% if book.available %}available{% else %}unavailable{% endif %}" 
+                        data-available="{{ book.available|yesno:'true,false' }}">
+                    Save Changes
+                </button>
+                <button type="button" class="delete-btn" id="delete-btn">Delete Book</button>
+            </div>
+        </form>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/shared.js' %}"></script>
+<script src="{% static 'js/editBook-script.js' %}"></script>
+<script>
+    const bookId = {{ book.id }};
+</script>
+{% endblock %}
